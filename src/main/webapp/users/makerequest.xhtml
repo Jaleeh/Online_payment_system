@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+>
+  <head>
+    <title>Request Money</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <h:body>
+    <p>Request a Username to Pay</p>
+    <h:form id="payment_form">
+      <br />
+      <h:outputLabel for="sender" value="SENT FROM: " />
+      <h:outputText
+        id="sender"
+        value="#{systemUserBackingBean.username}"
+        title="Sender"
+      />
+      <h:message style="color: red" for="sender" />
+      <br />
+      <br />
+      <h:outputLabel for="selected_receiver" />
+      <h:outputLabel for="receiver_id" value="FOUND USER:   " />
+
+      <h:outputText
+        id="receiver_id"
+        value="#{findAccountBackingBean.receiver_username}"
+        title="receiver"
+      />
+      <br />
+      <h:outputLabel for="receiver" value="SEND TO: " />
+      <h:inputText
+        id="receiver"
+        value="#{findAccountBackingBean.username}"
+        title="Enter username"
+        required="true"
+        requiredMessage="Mandatory Field"
+      />
+
+      <h:message style="color: red" for="username" />
+      <br />
+      <h:message style="color: red" for="name" />
+      <h:commandButton
+        id="find_account"
+        type="submit"
+        value="search"
+        action="#{findAccountBackingBean.findReceiverAccount}"
+        title="Find Account"
+      />
+      <h:commandButton id="reset" type="reset" value="reset " title="reset " />
+
+      <br />
+      <br />
+      <h:message style="color: red" for="sender" />
+      <h:outputLabel value="Amount: ">
+        <h:inputText
+          id="price"
+          label="Amount"
+          value="#{requestBackingBean.amount}"
+        >
+        </h:inputText>
+      </h:outputLabel>
+      <h:commandButton
+        id="sendpayment"
+        type="submit"
+        value="transfer"
+        action="#{requestBackingBean.makeRequest}"
+        title="Send Payment"
+      />
+    </h:form>
+  </h:body>
+</html>

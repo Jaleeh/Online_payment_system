@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+>
+  <h:head>
+    <title>Login Form</title>
+  </h:head>
+  <h:body>
+    <h:form>
+      Username: <h:inputText value="#{loginBackingBean.username}" /> Password:
+      <h:inputSecret value="#{loginBackingBean.password}" />
+
+      <h:commandButton value="Login" action="#{loginBackingBean.login}" />
+      <h:commandButton type="reset" value="Reset" />
+      <h:link outcome ="registration"
+              value="Register here">
+              
+           
+          </h:link>
+    </h:form>
+  </h:body>
+</html>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+>
+  <head>
+    <title>Login Page</title>
+  </head>
+
+  <h2>Hello, please log in:</h2>
+  <br /><br />
+  <form action="j_security_check" method="post">
+    <p>
+      <strong>Please Enter Your User Name: </strong>
+      <input type="text" name="j_username" size="25" />
+    </p>
+
+    <p></p>
+    <p>
+      <strong>Please Enter Your Password: </strong>
+      <input type="password" size="15" name="j_password" />
+    </p>
+
+    <p></p>
+    <p>
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </p>
+  </form>
+</html> -->
+<!-- </html> -->

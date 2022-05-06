@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    >
+    <h:head>
+        <title>Welcome to Webapps2022</title>
+    </h:head>
+    <h:body>
+        <div>
+            <div>
+                <h>Hi,&nbsp;</h
+                ><h:outputText value="#{systemUserBackingBean.username}" />
+            </div>
+            Current Balance: &nbsp;<h:outputText
+                value="#{systemUserBackingBean.findUserAccount().balance}"
+                /><h:outputText value="#{registerUserBackingBean.currency}" />
+        </div>
+        <br />
+        <div>
+            Pending Balance:&nbsp;<h:outputText
+                value="#{systemUserBackingBean.findUserAccount().pending_balance}"
+                />
+        </div>
+        <br />
+        <p>Pending Payments</p>
+        <div align="left">
+            <label style="font-weight: bold"> </label> <br />
+            <h:form>
+                <h:dataTable value="#{userQueryBackingBean.payments}" var="pep">
+                    <h:column>
+                        <f:facet name="header"> Sender </f:facet>
+                            #{pep.sender_username}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount </f:facet>
+                            #{pep.amount}
+                    </h:column>
+                    <h:column>
+                        <h:commandLink
+                            action="#{paymentsBackingBean.acceptPayment(pep.id)}"
+                            value="Accept"
+                            />
+                    </h:column>
+                    <h:column>
+                        <h:commandLink
+                            action="#{paymentsBackingBean.rejectPayment(pep.id)}"
+                            value="Reject"
+                            ></h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+
+            <br /><br />
+            <p>Payment History</p>
+            <div>
+                <h:form>
+                    <h:dataTable
+                        value="#{payementsBackingBean.acceptedPayments}"
+                        var="acp"
+                        >
+                        <h:column
+                            ><f:facet name="header">Sender</f:facet>
+                            #{acp.sender_username}</h:column
+                        >
+                        <h:column
+                            ><f:facet name="header">Amount</f:facet> #{acp.amount}</h:column
+                        >
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </div>
+
+        <div>
+            Request shown below
+            <div>
+                <h:form>
+                    <h:dataTable
+                        value="#{getPaymentsBackingBean.pendingRequests}"
+                        var="per"
+                        >
+                        <h:column
+                            ><f:facet name="header">Sender</f:facet>
+                            #{per.sender_username}</h:column
+                        >
+                        <h:column
+                            ><f:facet name="header">Amount</f:facet> #{per.amount}</h:column
+                        >
+                        <h:column>
+                            <h:commandLink
+                                action="#{paymentsBackingBean.acceptRequest(per.id)}"
+                                value="Accept"
+                                />
+                        </h:column>
+                        <h:column>
+                            <h:commandLink
+                                action="#{pymentsBackingBean.rejectRequest(per.id)}"
+                                value="Reject"
+                                /> </h:column
+                        >
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </div>
+
+        <br />
+        <h:form>
+            <h:link outcome="makepayment" value="Send Payment"></h:link></h:form
+        ><h:form
+            ><h:link outcome="makerequest" value="Request Payment"></h:link
+            ></h:form>
+        <h:form>
+            <h:commandButton value="Logout" action="#{loginBackingBean.logout}" />
+        </h:form>
+    </h:body>
+</html>

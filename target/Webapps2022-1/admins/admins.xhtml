@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Welcome Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <div>
+            <h:dataTable value="#{adminBackingBean.payments}" var="pays">
+                <h:column><f:facet name="header">Sender</f:facet> #{pays.sender_username}</h:column>
+                <h:column><f:facet name="header">Receiver</f:facet> #{pays.receiver_username}</h:column>
+                <h:column><f:facet name="header">Amount</f:facet> #{pays.amount}</h:column>
+            </h:dataTable>
+        </div>
+        <div>
+            <h:dataTable value="#{adminBackingBean.accounts}" var="acc">
+                <h:column><f:facet name="header">Sender</f:facet> #{acc.username}</h:column>
+                <h:column><f:facet name="header">Balance</f:facet> #{acc.balance}</h:column>
+            </h:dataTable>
+        </div>
+        
+         <h:form>
+            <h:commandButton value="Logout" action="#{loginBackingBean.logout}"/> 
+        </h:form>
+
+    </h:body>
+
+</html>
